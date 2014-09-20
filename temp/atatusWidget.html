@@ -1,0 +1,126 @@
+<html>
+<head>
+  <script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="example.css">
+</head>
+<body>
+
+<div id="chat_closed" onclick="swapOnClick('chat_closed', 'chat_open')" style="position:absolute; bottom:0; right: 50; border-style: solid; border-color: #98bf21; border-width: 5px; height:20; width:160; background-color: #b0c4de; padding: 5 40 5 20;">Chat</div>
+
+<!-- CHAT MARKUP -->
+<div class="example-chat l-demo-container" id="chat_open" style="position:absolute; bottom:0; display:none;">
+  <header onclick="swapOnClick('chat_open', 'chat_closed')">Chatting</header>
+
+  <!-- <table>
+  	<tr>
+  		<td width="80%">
+  			<div id="recent_threads">
+  				<table>
+  					<tr id="thread1" onclick="loadThread($this)">
+  						<td>1
+  						</td>
+  					</tr>
+  					<tr id="thread2" onclick="loadThread($this)">
+  						<td>2
+  						</td>
+  					</tr>
+  					<tr id="thread3" onclick="loadThread($this)">
+  						<td>3
+  						</td>
+  					</tr>
+  				</table>
+  			</div>
+  		</td>
+  		<td width="20%" onclick="swapOnClick('recent_threads', 'new_thread')">
+
+  		</td>
+  	</tr>
+  </table>
+
+  <div  id="recent_thread" style="display:none;" onclick="swapOnClick('new_thread', 'recent_threads')">
+	  <div class='example-chat-toolbar'>
+	    <label for="nameInput">Username:</label>
+	    <input type='text' id='nameInput' placeholder='enter a username...'>
+	  </div>
+
+	  <ul id='example-messages' class="example-chat-messages"></ul>
+
+	  <footer>
+	    <input type='text' id='messageInput' name="new_thread" placeholder='Type a message...'>
+	  </footer>
+  </div> -->
+
+  <div  id="new_thread" style="display:none;" onclick="swapOnClick('new_thread', 'recent_threads')">
+	  <!-- <div class='example-chat-toolbar'>
+	    <label for="nameInput">Username:</label>
+	    <input type='text' id='nameInput' placeholder='enter a username...'>
+	  </div> -->
+
+	  <ul id='example-messages' class="example-chat-messages"></ul>
+
+	  <footer>
+	    <input type='text' id='messageInput' name="new_thread" placeholder='Type a message...'>
+	  </footer>
+  </div>
+</div>
+
+<!-- CHAT JAVACRIPT -->
+<script>
+  // CREATE A REFERENCE TO FIREBASE
+  var messagesRef = new Firebase('https://utavee.firebaseio-demo.com/');
+
+  // REGISTER DOM ELEMENTS
+  var messageField = $('#messageInput');
+  var nameField = $('#nameInput');
+  var messageList = $('#example-messages');
+
+  // LISTEN FOR KEYPRESS EVENT
+  messageField.keypress(function (e) {
+    if (e.keyCode == 13) {
+      //FIELD VALUES
+      var username = nameField.val();
+      var message = messageField.val();
+
+      //SAVE DATA TO FIREBASE AND EMPTY FIELD
+      messagesRef.push({name:username, text:message});
+      messageField.val('');
+    }
+  });
+
+  // Add a callback that is triggered for each chat message.
+  messagesRef.limit(10).on('child_added', function (snapshot) {
+    //GET DATA
+    var data = snapshot.val();
+    var username = data.name || "anonymous";
+    var message = data.text;
+
+    //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
+    var messageElement = $("<li>");
+    var nameElement = $("<strong class='example-chat-username'></strong>");
+    nameElement.text(username);
+    messageElement.text(message).prepend(nameElement);
+
+    //ADD MESSAGE
+    messageList.append(messageElement)
+
+    //SCROLL TO BOTTOM OF MESSAGE LIST
+    messageList[0].scrollTop = messageList[0].scrollHeight;
+  });
+</script>
+<script type="text/javascript">
+	function swapOnClick(hide, unhide)
+	{
+		document.getElementById(hide).style.display = "none";
+		document.getElementById(unhide).style.display = "block";
+	}
+
+	// function loadThread(thread)
+	// {
+	// 	document.getElementById(hide).style.display = "none";
+	// 	document.getElementById(unhide).style.display = "block";
+	// }
+</script>
+</body>
+</html>
+
