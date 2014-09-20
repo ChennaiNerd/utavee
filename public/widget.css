@@ -68,6 +68,7 @@
     font-weight: normal;
     outline: none;
 }
+
 .utavee-chat .utavee-chat-toolbar {
     background-color: #FFF;
     padding: 10px;
@@ -91,31 +92,32 @@
     padding-left: 100px;
     color: #999;
 }
-.utavee-chat .utavee-chat-toolbar input:active, .utavee-chat .utavee-chat-toolbar input:focus {
+.utavee-chat .utavee-chat-toolbar input:active,
+.utavee-chat .utavee-chat-toolbar input:focus {
     color: #1d9dff;
     border: 1px solid #FFF;
 }
 
-.utavee-chat ul {
+.utavee-chat-messages {
     list-style: none;
     margin: 0px;
     padding: 10px 20px 20px;
-    height: 200px;
+    /*height: 200px;*/
     overflow: auto;
 }
 
-.utavee-chat ul li {
+.utavee-chat-messages li {
     font-size: 13px;
     line-height: 24px;
 }
-.utavee-chat ul .utavee-chat-username {
+.utavee-chat-messages .utavee-chat-username {
     margin-right: 10px;
 }
-.utavee-chat footer {
+.utavee-chat-footer {
     display: block;
     padding: 10px;
 }
-.utavee-chat footer input {
+.utavee-chat-footer input {
   border: 1px solid #ced3db;
   height: 40px;
 }
@@ -145,5 +147,9 @@
 
 .message-text strong {
     color: #16a085;
+}
+
+.operator-text-area {
+    margin-top: 20px;
 }
 

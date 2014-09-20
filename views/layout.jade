@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="myApp")
+html(ng-app="myApp", ng-init="operatorName = '#{operatorName}';")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -9,6 +9,7 @@ html(ng-app="myApp")
     meta(name='author', content='')
     title #{title} | Hackathon Starter
     != css('styles')
+    link(rel="stylesheet", type="text/css", href="/widget.css")
   body(ng-controller="MainController")
     include partials/navbar
 

@@ -11,7 +11,7 @@ block content
             .panel-body.panel-body-left
               ul.list-chat
                 li.list-chat-item(ng-repeat="customer in customers")
-                  a(href="", ng-click="openChat(customer.id)")
+                  a(ng-click="openChat(customer)")
                     span.client-name
                       span.ion-ios7-circle-filled.active-icon
                       span(ng-bind="customer.name")
@@ -22,7 +22,7 @@ block content
             .panel-body.panel-body-left
               ul.list-chat
                 li.list-chat-item(ng-repeat="operator in operators")
-                  a(href="", ng-click="openOperator(customer.id)")
+                  a(ng-click="openOperator(customer.id)")
                     span.operator-name
                       span.ion-ios7-circle-filled.active-icon
                       span(ng-bind="operator.name")
@@ -31,6 +31,13 @@ block content
 
         .col-sm-8
            .panel.panel-default.panel-right
-              .panel-heading.
-                Chat
+              .panel-heading {{chatName}}
               .panel-body
+                  ul(id='utavee-messages', class="utavee-chat-messages")
+                    li(ng-repeat="msg in messages", ng-class="{'operator': msg.from != operatorName, 'client': msg.from == operatorName }")
+                      strong(class="msg-from") {{msg.from}}
+                      span(class="msg-body", ng-bind-html="msg.body | linky")
+                    textarea(ng-if="chatName" class="col-sm-6 col-xs-12 operator-text-area", rows="4", ng-model="msg",
+                        ng-keydown="addMessage($event)", placeholder="Type Message here...")
+
+

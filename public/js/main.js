@@ -19,16 +19,22 @@ angular.module('myApp')
     var ref = new Firebase(fbUrl + '/operators');
     $scope.operators = $firebase(ref).$asArray();
 
-    $scope.getMessages = function (id) {
-        var ref = new Firebase(fbUrl + '/customers/' + id + '/messages');
-        $scope.messages = $firebase(ref).$asArray();;
+    $scope.openChat = function (customer) {
+        var ref = new Firebase(fbUrl + '/customers/' + customer.$id + '/messages');
+        $scope.messages = $firebase(ref).$asArray();
+        $scope.chatName = customer.name;
+    }
+
+    $scope.closeChat = function () {
+        $scope.messages = [];
+        $scope.chatName = null;
     }
 
     $scope.addMessage = function(e) {
         if (e.keyCode != 13) {
             return;
         };
-        $scope.messages.$add({ body: $scope.msg, from: $rootScope.userName });
+        $scope.messages.$add({ body: $scope.msg, from: $rootScope.operatorName });
         $scope.msg = '';
     }
 });

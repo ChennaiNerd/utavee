@@ -5,8 +5,10 @@
 
 exports.index = function(req, res) {
     if (req.user) {
+        console.log(req.user);
         res.render('chat', {
-            title: 'Operator chats'
+            title: 'Operator chats',
+            operatorName: req.user.profile.name
         });
         return;
     }

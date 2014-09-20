@@ -24,20 +24,15 @@
         <textarea class="message-text" row="5" ng-model="msg"
             ng-keydown="addMessage($event)" placeholder="Type Message here..."></textarea>
     </div> -->
-      <div  id="new_thread">
-      <!-- <div class='utavee-chat-toolbar'>
-        <label for="nameInput">Username:</label>
-        <input type='text' id='nameInput' placeholder='enter a username...'>
-      </div> -->
-
+    <div>
       <ul id='utavee-messages' class="utavee-chat-messages">
-            <li ng-repeat="msg in messages" class="bubble" ng-class="{'operator': msg.from != name, 'client': msg.from == name }"   >
+            <li ng-repeat="msg in messages" class="utavee-chat-message" ng-class="{'operator': msg.from != name, 'client': msg.from == name }"   >
                 <strong class="msg-from">{{msg.from}}</strong>
                 <span class="msg-body" ng-bind-html="msg.body | linky"></span>
             </li>
       </ul>
 
-      <footer>
+      <footer class="utavee-chat-footer">
         <textarea class="message-text" row="5" ng-model="msg"
             ng-keydown="addMessage($event)" placeholder="Type Message here..."></textarea>
       </footer>
@@ -50,7 +45,7 @@
 
     angular.module('chatApp', ['ngSanitize', 'firebase']).controller('ChatController',
         function($scope, $rootScope, $location, $firebase) {
-        $scope.opened = true;
+        $scope.opened = false;
 
         function getQueryVariable(hrefLocation, variable) {
             var query = hrefLocation.substring(hrefLocation.indexOf('?') + 1);
