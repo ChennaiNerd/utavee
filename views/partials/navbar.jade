@@ -7,16 +7,13 @@
         span.icon-bar
         span.icon-bar
       a.navbar-brand(href='/')
-        span.ion-cube
+        span.ion-chatbubbles
         | Utavee
     .collapse.navbar-collapse
       ul.nav.navbar-nav
       ul.nav.navbar-nav.navbar-right
         li(class=title=='Home'?'active':undefined)
           a(href='/') Home
-        li(class=title=='Contact'?'active':undefined)
-          a(href='/contact') Contact
-
         if !user
           li(class=title=='Login'?'active':undefined)
             a(href='/login') Login
@@ -26,9 +23,9 @@
           li.dropdown(class=title=='Account Management'?'active':undefined)
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               if user.profile.picture
-                img(src='#{user.profile.picture}')
+                img.image-round(src='#{user.profile.picture}')
               else
-                img(src='#{user.gravatar(60)}')
+                img.image-round(src='#{user.gravatar(60)}')
               | #{user.profile.name || user.email || user.id}&nbsp;
               i.caret
             ul.dropdown-menu

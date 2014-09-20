@@ -1,0 +1,17 @@
+# Skip folders
+docs
+.git
+.tmp
+.sass-cache
+views
+public
+
+# app # Does not work for app folder
+
+# Skip temp file
+cookies.txt
+.DS_Store
+
+# Skip configuration file
+package.json
+README.md
