@@ -31,8 +31,8 @@ block content
 
         .col-sm-8
            .panel.panel-default.panel-right
-              .panel-heading {{chatName}}
-              .panel-body
+              .panel-heading {{chatName || 'Select one of the active chat'}}
+              .panel-body.panel-body-right
                   ul(id='utavee-messages', class="utavee-chat-messages")
                     li(ng-repeat="msg in messages", ng-class="{'operator': msg.from != operatorName, 'client': msg.from == operatorName }")
                       strong(class="msg-from") {{msg.from}}

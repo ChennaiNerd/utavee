@@ -22,7 +22,7 @@ angular.module('myApp')
     $scope.openChat = function (customer) {
         var ref = new Firebase(fbUrl + '/customers/' + customer.$id + '/messages');
         $scope.messages = $firebase(ref).$asArray();
-        $scope.chatName = customer.name;
+        $scope.chatName = customer.name + '(' + customer.email + ')';
     }
 
     $scope.closeChat = function () {

@@ -169,12 +169,15 @@ footer {
 .panel-left {
     min-height: 290px;
 }
+.panel-right {
+    min-height: 600px;
+}
+
 .panel-body-left {
     padding: 0 !important;
 }
-
-.panel-right {
-    min-height: 600px;
+.panel-body-right {
+    padding-top: 0 !important;
 }
 
 .list-chat {
@@ -183,11 +186,17 @@ footer {
 }
 
 .list-chat-item a {
+    display: block;
     padding: 20px;
     font-size: 18px;
-    background: #f5f8fa;
-    border-bottom: 1px solid #cdcdcd;
-    display: block;
+    border-bottom: 1px solid #efefef;
+    background-color: #fafafa;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: #f5f8fa;
+    }
 }
 
 .client-name,
