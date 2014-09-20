@@ -2,10 +2,19 @@ extends layout
 
 block content
   .container
-    .app-section
-      h1.heading App
-      p.
-        To install the Utavee widget on your site,
-        copy this snippet and paste it near the bottom of your HTML
-        code in the <body> tag, on every page you want the widget to appear.
-
+    .chat-section
+      .row
+        .col-sm-4
+          .panel.panel-default.panel-left
+            .panel-heading.
+              Active Chats
+            .panel-body
+          .panel.panel-default.panel-left
+            .panel-heading.
+              Active Operators
+            .panel-body
+        .col-sm-8
+           .panel.panel-default.panel-right
+              .panel-heading.
+                Chat
+              .panel-body
