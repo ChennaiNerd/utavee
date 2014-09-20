@@ -1,0 +1,86 @@
+<html>
+<head>
+    <script src='http://localhost:8000/jquery-2.1.1.min.js'></script>
+    <script src="http://localhost:8000/angular.min.js"></script>
+    <script src="http://localhost:8000/angular-sanitize.min.js"></script>
+    <script src="http://localhost:8000/firebase.js"></script>
+    <script src="http://localhost:8000/angularfire.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/index.css">
+
+</head>
+
+<body ng-app="chatApp" ng-controller="ChatController">
+
+<div id="chat_closed" ng-show="!opened" ng-click="opened = true" style="position:absolute; bottom:0; right: 50; border-style: solid; border-color: #98bf21; border-width: 5px; height:20; width:160; background-color: #b0c4de; padding: 5 40 5 20;cursor:pointer">Chat</div>
+
+<!-- CHAT MARKUP -->
+<div ng-show="opened" class="example-chat l-demo-container" id="chat_open" style="position:absolute; bottom:0;">
+  <header ng-click="opened = false">Chatting</header>
+
+<!--     <div class="message-box">
+        <div class="message-list">
+        </div>
+
+        <textarea class="message-text" row="5" ng-model="msg"
+            ng-keydown="addMessage($event)" placeholder="Type Message here..."></textarea>
+    </div> -->
+      <div  id="new_thread">
+      <!-- <div class='example-chat-toolbar'>
+        <label for="nameInput">Username:</label>
+        <input type='text' id='nameInput' placeholder='enter a username...'>
+      </div> -->
+
+      <ul id='example-messages' class="example-chat-messages">
+            <li ng-repeat="msg in messages" class="bubble" ng-class="{'operator': msg.from != name, 'client': msg.from == name }"   >
+                <strong class="msg-from">{{msg.from}}</strong>
+                <span class="msg-body" ng-bind-html="msg.body | linky"></span>
+            </li>
+      </ul>
+
+      <footer>
+        <textarea class="message-text" row="5" ng-model="msg"
+            ng-keydown="addMessage($event)" placeholder="Type Message here..."></textarea>
+      </footer>
+  </div>
+</div>
+
+<!-- CHAT JAVACRIPT -->
+<script>
+
+
+    angular.module('chatApp', ['ngSanitize', 'firebase']).controller('ChatController',
+        function($scope, $rootScope, $location, $firebase) {
+        $scope.opened = true;
+
+        function getQueryVariable(hrefLocation, variable) {
+            var query = hrefLocation.substring(hrefLocation.indexOf('?') + 1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                if (decodeURIComponent(pair[0]) == variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            return null;
+        }
+
+        var email = getQueryVariable(location.href, 'email');
+        var id = getQueryVariable(location.href, 'id');
+        var name = $scope.name = getQueryVariable(location.href, 'name');
+        var ref = new Firebase('https://utavee.firebaseio.com/utavee/customers/' + id + '/messages');
+        $scope.messages = $firebase(ref).$asArray();
+        console.log($scope.messages);
+
+        $scope.addMessage = function(e) {
+            if (e.keyCode != 13) {
+                return;
+            };
+            $scope.messages.$add({ body: $scope.msg, from: name });
+            $scope.msg = '';
+        }
+    });
+
+</script>
+</body>
+</html>
+

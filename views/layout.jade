@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app="myApp")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -9,7 +9,7 @@ html
     meta(name='author', content='')
     title #{title} | Hackathon Starter
     != css('styles')
-  body
+  body(ng-controller="MainController")
     include partials/navbar
 
     include partials/flash
