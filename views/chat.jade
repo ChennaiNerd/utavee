@@ -8,11 +8,27 @@ block content
           .panel.panel-default.panel-left
             .panel-heading.
               Active Chats
-            .panel-body
+            .panel-body.panel-body-left
+              ul.list-chat
+                li.list-chat-item(ng-repeat="customer in customers")
+                  a(href="", ng-click="openChat(customer.id)")
+                    span.client-name
+                      span.ion-ios7-circle-filled.active-icon
+                      span(ng-bind="customer.name")
+                    span.client-email(ng-bind="customer.email")
           .panel.panel-default.panel-left
             .panel-heading.
               Active Operators
-            .panel-body
+            .panel-body.panel-body-left
+              ul.list-chat
+                li.list-chat-item(ng-repeat="operator in operators")
+                  a(href="", ng-click="openOperator(customer.id)")
+                    span.operator-name
+                      span.ion-ios7-circle-filled.active-icon
+                      span(ng-bind="operator.name")
+                    span.operator-email(ng-bind="operator.email")
+
+
         .col-sm-8
            .panel.panel-default.panel-right
               .panel-heading.

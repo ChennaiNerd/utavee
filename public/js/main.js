@@ -13,18 +13,15 @@ angular.module('myApp')
     .controller('MainController',
         function($scope, $rootScope, $firebase, fbUrl) {
 
-    var topRef = fbUrl + $rootScope.appID;
-
     var ref = new Firebase(fbUrl + '/customers');
-    $scope.customers = $firebase(ref);
+    $scope.customers = $firebase(ref).$asArray();
 
     var ref = new Firebase(fbUrl + '/operators');
-    $scope.operators = $firebase(ref);
+    $scope.operators = $firebase(ref).$asArray();
 
-    $scope.getMessages = function (email) {
-        var ref = new Firebase(fbUrl + '/customers/' + email + "/threads");
-        var threads = $firebase(ref);
-        $scope.messages = threads[0].messages;
+    $scope.getMessages = function (id) {
+        var ref = new Firebase(fbUrl + '/customers/' + id + '/messages');
+        $scope.messages = $firebase(ref).$asArray();;
     }
 
     $scope.addMessage = function(e) {
