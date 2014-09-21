@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0128)https://shopperstop77.myshopify.com/admin/bar?u=http://shopperstop77.myshopify.com/products/westhreads-solid-rayon-womens-kaftan -->
+<html style="background: transparent;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.shopify.com/s/assets/storefront_admin_bar-4da7b05de43bbac082917e3c40e38e64.css" media="screen" rel="stylesheet">
+    <!--<base target="_parent">--><base href="." target="_parent">
+<style type="text/css"></style></head>
+<body style="background: transparent;">
+
+    <header class="storefront-bar " style="display: none;">
+    <div class="storefront-bar__left">
+
+      <a class="storefront-bar__logo" href="https://shopperstop77.myshopify.com/admin">
+        <img alt="Shopify bag" src="shopify-bag-619567340dc0f337cb351c57d5c0cd39.svg">
+</a>      <ul class="nav">
+        <li class="nav--item">
+          <a href="https://shopperstop77.myshopify.com/admin">Back to Dashboard</a>
+        </li>
+        <li class="nav--item">
+          <a class="nav-link nav-link__theme-settings" href="https://shopperstop77.myshopify.com/admin/themes/10983887/settings">
+            Edit Theme Settings
+</a>        </li>
+        <li class="nav--item">
+          <a class="nav-link nav-link__theme-store" href="https://themes.shopify.com/?shop=shopperstop77.myshopify.com&utm_content=contextual&utm_medium=shopify&utm_source=admin" target="_blank">
+            Visit Theme Store
+</a>        </li>
+      </ul>
+
+    </div>
+
+    <div class="storefront-bar__right">
+        <span class="store-password">Your website is password protected with "vuifow"</span>
+      <a class="no-bar-redirect" href="https://shopperstop77.myshopify.com/admin/bar?u=http://shopperstop77.myshopify.com/products/westhreads-solid-rayon-womens-kaftan#" id="close-admin-bar">
+        <i class="ico-round-minus"></i>
+</a>    </div>
+  </header>
+
+  <div id="show-admin-bar" class="storefront-bar--minimized collapsed" style="display: block;">
+    <i class="ico-round-plus"></i>
+  </div>
+
+
+
+  <script src="jquery.min(1).js"></script>
+
+  <script type="text/javascript">
+    function setCookie(c_name, value, exdays) {
+      var exdate=new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString()+";path=/admin");
+      document.cookie=c_name + "=" + c_value;
+    }
+
+    jQuery(document).ready(function($){
+
+      cache = {};
+      cache.$storefrontBar = $('.storefront-bar');
+      cache.$storefrontBarMinimized = $('.storefront-bar--minimized');
+
+
+
+      $("#show-admin-bar").click(function(elem){
+        $('#admin-bar').show();
+          $('body').css('background', '#31373d');
+        cache.$storefrontBar.fadeIn("fast");
+        cache.$storefrontBarMinimized.fadeOut("fast");
+
+        window.setTimeout(function() { window.top.postMessage("1", "http://shopperstop77.myshopify.com"); }, 0);
+        setCookie("_abv", "1", 730);
+
+        return false;
+      });
+
+      $("#close-admin-bar").click(function(elem){
+        cache.$storefrontBar.hide();
+        cache.$storefrontBarMinimized.fadeIn("fast");
+        $("html, body").css("background","transparent")
+
+        window.setTimeout(function() { window.top.postMessage("0", "http://shopperstop77.myshopify.com"); }, 0);
+        setCookie("_abv", "0", 730);
+
+        return false;
+      });
+    });
+  </script>
+
+
+
+</body></html>
