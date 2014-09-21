@@ -4,7 +4,7 @@ block content
   .container
     .page-header
       h3 Sign in
-    form(method='POST')
+    form(method='POST', action="/login")
       input(type='hidden', name='_csrf', value=_csrf)
       .col-sm-4.col-sm-offset-3
         .form-group

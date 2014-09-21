@@ -8,6 +8,7 @@ var userSchema = new mongoose.Schema({
 
   instagram: String,
   tokens: Array,
+  apiKey: String,
 
   profile: {
     name: { type: String, default: '' },

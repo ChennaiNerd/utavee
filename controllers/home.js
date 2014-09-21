@@ -21,6 +21,7 @@ exports.index = function(req, res) {
 
 exports.install = function(req, res) {
     res.render('install', {
-        title: 'Install Utavee on your website and mobile apps'
+        title: 'Install Utavee on your website and mobile apps',
+        apiKey: req.user && req.user.apiKey
     });
 };

@@ -39,3 +39,9 @@ angular.module('myApp')
     }
 });
 
+$(document).ready(function() {
+
+  // Place JavaScript code here...
+
+});
+

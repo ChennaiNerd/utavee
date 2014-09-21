@@ -3,7 +3,7 @@ extends ../layout
 block content
   .container
     .col-sm-8.col-sm-offset-2
-      form(method='POST')
+      form(method='POST', action="/forgot")
         legend Forgot Password
         input(type='hidden', name='_csrf', value=_csrf)
         .form-group
