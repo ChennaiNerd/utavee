@@ -30,14 +30,24 @@ block content
 
 
         .col-sm-8
-           .panel.panel-default.panel-right
-              .panel-heading {{chatName || 'Select one of the active chat'}}
-              .panel-body.panel-body-right
+          .panel.panel-default.panel-right
+            .panel-heading {{chatName || 'Select one of the active chat'}}
+            .panel-body.panel-body-right
+              .row(ng-show="chatName",)
+                .col-sm-8
                   ul(id='utavee-messages', class="utavee-chat-messages")
                     li(ng-repeat="msg in messages", ng-class="{'operator': msg.from != operatorName, 'client': msg.from == operatorName }")
                       strong(class="msg-from") {{msg.from}}
                       span(class="msg-body", ng-bind-html="msg.body | linky")
-                    textarea(ng-if="chatName" class="col-sm-6 col-xs-12 operator-text-area", rows="4", ng-model="msg",
-                        ng-keydown="addMessage($event)", placeholder="Type Message here...")
-
+                    textarea(class="col-sm-10 col-xs-12 operator-text-area", rows="4",
+                        ng-model="newMessage", ng-keydown="addMessage($event)", placeholder="Type reply here...")
+                .col-sm-4
+                  .customer-information
+                    .media
+                      a.pull-left
+                        img.media-object(src="")
+                      .media-body
+                        h4.media-heading {{customer.name}}
+                        p
+                          a(href="emailto:{{customer.email}}") {{customer.email}}
 
